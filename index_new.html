@@ -77,7 +77,7 @@
                                We've got a static dropdown list of friends here (https://getbootstrap.com/docs/3.3/components/#dropdowns).
 			       It allows selection of multiple items from the dropdown as well as live search input (https://developer.snapappointments.com/bootstrap-select/examples/).
 			  -->
-                          <select class="selectpicker" multiple data-live-search="true">
+                          <select id="individualInvites" class="selectpicker" multiple data-live-search="true">
                             <option>a</option>
                             <option>b</option>
                             <option>c</option>
@@ -90,7 +90,7 @@
 		    <div class="panel panel-default">
 		      <div class="panel-body">
 			<div class="form-group">
-                          <select class="selectpicker" multiple data-live-search="true">
+                          <select id="groupInvites" class="selectpicker" multiple data-live-search="true">
                             <option>A</option>
                             <option>B</option>
                             <option>C</option>
@@ -130,7 +130,7 @@
                           </div>
                           <div class="panel-body">
                             <div class="input-group">
-                              <select class="selectpicker" multiple data-live-search="true" id="friendlist">
+                              <select id="locInvites" class="selectpicker" multiple data-live-search="true" id="friendlist">
                                 <option>a</option>
                                 <option disabled>b</option>
                                 <option disabled>c</option>
@@ -148,6 +148,9 @@
 		   collapse the event details panel (see code for expand/collapse in the script tag below),
 		   expand the review panel and display the event details for review using appropriate components
 		   (https://getbootstrap.com/docs/3.3/components/) -->
+	      <button id="submit" type="button" class="btn btn-default btn-lg">
+		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Submit
+	      </button>
 	    </form>
 	  </div>
 	</div>
@@ -162,7 +165,10 @@
 	  <!-- for each piece of the event info, add an edit button.
 	       Clicking on the edit button should expand the event details panel and scroll to the relevant input
 	       to be edited (http://api.jquery.com/animate/) -->
-	  <!-- add a button to finalize and create the event -->
+	  <p id="final-review"></p> <!-- Insert data into this class from js -->
+	  <button id="confirm" type="button" class="btn btn-default btn-lg">
+	    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Confirm and submit
+	  </button>
 	</div>
       </div>
     </div>
@@ -183,6 +189,35 @@
        }
      });
      // all the handling for button clicks go here
+     $( "#submit" ).click(function() {
+       // Handle the submit button
+       var description = $('#eventName').val();
+       var date = $('#eventDateTime').val();
+       var individual_invited = $( "select#individualInvites" ).val();
+       var groups_invited = $( "select#groupInvites" ).val();
+       var loc_invited = $( "select#locInvites" ).val();
+
+       function append_for_review(string) {
+	 $("#final-review").append(string);
+       }
+
+       function make_bold(string) {
+	 return "<b>"+string+"</b>";
+       }
+
+       append_for_review("</br>");
+       append_for_review(make_bold("Description: ")+ description);
+       append_for_review("</br>");
+       append_for_review(make_bold("Date: ")+ date);
+       append_for_review("</br>");
+       append_for_review(make_bold("Individuals invited: ")+ individual_invited);
+       append_for_review("</br>");
+       append_for_review(make_bold("Groups invited: ")+ groups_invited);
+       append_for_review("</br>");
+       append_for_review(make_bold("Individuals invited near you: ")+ loc_invited);
+       append_for_review("</br>");
+
+     });
     </script>
     </div>
   </body>
