@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bandwagon</title>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<!-- Bootstrap datetimepicker and it's dependencies-->
+	<script type="text/javascript" src="./js/moment-2.10.0/min/moment.min.js"></script>
+	<script type="text/javascript" src="bootstrap-datetimepicker-4.17.47/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Bootstrap and datetimepicker CSS -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="bootstrap-datetimepicker-4.17.47/build/css/bootstrap-datetimepicker.min.css" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+  </head>
+  <body>
+	<div class="container">
+			<div id="details" class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title">Event Details</h2>
+					<span class="pull-right clickable" ><i class="glyphicon glyphicon-chevron-up"></i></span>
+				</div>
+
+		  		<div class="panel-body">
+					<div class="well">
+						<form id="frmDetails">
+							<div class="form-group row">
+								<label for="eventName">Description</label>
+								<input type="text" class="form-control" id="eventName" placeholder="Enter event description">
+							</div>
+							<div class="form-group row">
+								<label for="eventDateTime">Date and Time</label>
+								<div class='input-group date' id='eventDateTimeDiv'>
+		                    		<input type='text' class="form-control" id="eventDateTime" placeholder="Enter event date and time"/>
+		                    		<span class="input-group-addon">
+		                        		<span class="glyphicon glyphicon-calendar"></span>
+		                    		</span>
+		                		</div>
+							</div>
+							<div class="form-group row">
+								<label for="eventLocation">Location</label>
+								<div id='eventLocation'></div>
+							</div>
+							<div class="form-group row">
+								<label id="eventInvites">Invite</label>
+                                <button id="authorizeButton" type="button" class="btn btn-default navbar-btn">Fetch my contacts</button>
+								<ul class="nav nav-tabs">
+        							<li class="active"><a data-toggle="tab" href="#individualInvites">Individual</a></li>
+        							<!-- <li><a data-toggle="tab" href="#groupInvites">Group</a></li> -->
+									<li><a data-toggle="tab" href="#locInvites">Near Me</a></li>
+								</ul>
+								<div class="tab-content">
+        							<div id="individualInvites" class="tab-pane fade in active">
+										<div class="panel panel-default">
+									  		<div class="panel-body">
+												<div class="form-group">
+													<!--
+                                                    We've got a static dropdown list of friends here (https://getbootstrap.com/docs/3.3/components/#dropdowns).
+													It allows selection of multiple items from the dropdown as well as live search input (https://developer.snapappointments.com/bootstrap-select/examples/).
+													-->
+                                                    <select id="individualInvitesList" class="selectpicker" multiple data-live-search="true">
+                                                        <option>a</option>
+                                                        <option>b</option>
+                                                        <option>c</option>
+                                                    </select>
+  												</div>
+											</div>
+										</div>
+            						</div>
+        							<!-- <div id="groupInvites" class="tab-pane fade">
+										<div class="panel panel-default">
+									  		<div class="panel-body">
+												<div class="form-group">
+                                                    <select id="groupInvitesList" class="selectpicker" multiple data-live-search="true">
+                                                        <option>A</option>
+                                                        <option>B</option>
+                                                        <option>C</option>
+                                                    </select>
+  												</div>
+											</div>
+										</div>
+            						</div> -->
+									<div id="locInvites" class="tab-pane fade">
+										<div class="panel panel-default">
+									  		<div class="panel-body">
+												<!--
+                                                An input group (+/- buttons on left and right of the text input to
+                                                increment/decrement default value) (https://getbootstrap.com/docs/3.3/components/#input-groups).
+												The text input here shows the chosen radius value in miles to search for friends.
+												Additionally we have a dropdown list of friends. Based on the value in the text input, disable certain items from your dropdown list.
+												-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                      <h3 class="panel-title">Miles of radius to search</h3>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <!--
+                                                        -->
+                                                        <div class="input-group" id="distancegrp">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-minus-sign"></i></button>
+                                                            </span>
+                                                            <input type="text" class="form-control" aria-label="miles" id="distance" value="1">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="panel panel-default">
+                                                     <div class="panel-heading">
+                                                       <h3 class="panel-title">Friends near me</h3>
+                                                     </div>
+                                                     <div class="panel-body">
+                                                         <div class="input-group">
+                                                             <select id="locInvitesList" class="selectpicker" multiple data-live-search="true" >
+                                                                 <option>a</option>
+                                                                 <option disabled>b</option>
+                                                                 <option disabled>c</option>
+                                                             </select>
+                                                         </div>
+                                                     </div>
+                                                  </div>
+											</div>
+										</div>
+            						</div>
+								</div>
+							</div>
+
+
+							<!-- add a finish button (https://getbootstrap.com/docs/3.3/components/#btn-groups); see the 'btn' class.
+							Click on this button should fetch all the entered event details (https://api.jquery.com/click/) (http://api.jquery.com/val/),
+							collapse the event details panel (see code for expand/collapse in the script tag below),
+							expand the review panel and display the event details for review using appropriate components
+							(https://getbootstrap.com/docs/3.3/components/) -->
+							<div class="form-group row">
+								<button class="btn btn-primary" type="button" onclick="return sub()">Submit</button>
+							</div>
+						</form>
+					</div>
+		  		</div>
+		  	</div>
+			<div id="review" class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title">Review and Confirm</h2>
+					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+		  		</div>
+		  		<div class="panel-body">
+					<!-- display the entered inputs in the event details panel here -->
+					<!-- for each piece of the event info, add an edit button.
+					Clicking on the edit button should expand the event details panel and scroll to the relevant input
+					to be edited (http://api.jquery.com/animate/) -->
+					<!-- add a button to finalize and create the event -->
+					<div class="well">
+						<div class="row">
+							<div class="col-md-4 text-right">
+									<label>Description</label>
+								</div>
+								<div class="col-md-4 text-center">
+									<span id="review_eventName"></span>
+								</div>
+								<div class="col-md-4">
+									<button class="btn btn-default" onclick="edit('eventName')"><i class="glyphicon glyphicon-pencil"></i></button>
+								</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-md-4 text-right">
+								<label>Date & Time</label>
+							</div>
+							<div class="col-md-4 text-center">
+								<span id="review_eventDateTime"></span>
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-default" onclick="edit('eventDateTime')"><i class="glyphicon glyphicon-pencil"></i></button>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-4 text-right">
+								<label>Location</label>
+							</div>
+							<div class="col-md-4 text-center">
+								<span id='review_eventLocation'></span>
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-default" onclick="edit('eventLocation')"><i class="glyphicon glyphicon-pencil"></i></button>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-4 text-right">
+								<label>Invite</label>
+							</div>
+							<div class="col-md-4 text-center">
+								<span id='review_eventInvites_selected' style="display: none;">
+									<b>Selected <span id='review_invite_type'></span>:</b>
+									<span id='review_eventInvites'></span>
+								</span>
+							<br/>
+								<span style="display: none;">
+									<b>In Radius: </b> <span id='review_distance'></span> (mi)
+								</span>
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-default" onclick="edit('eventInvites')"><i class="glyphicon glyphicon-pencil"></i></button>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button class="btn btn-primary" onclick="confirm()">Confirm Event</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+    <script type="text/javascript">
+		// generates date and time picker
+		$('#eventDateTimeDiv').datetimepicker();
+		// handles collapse/expansion of the event details and review panels
+		$(document).on('click', '.panel-heading span.clickable', function(e){
+    		var $this = $(this);
+			if(!$this.hasClass('panel-collapsed')) {
+				$this.parents('.panel').find('.panel-body').slideUp();
+				$this.addClass('panel-collapsed');
+				$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+			} else {
+				$this.parents('.panel').find('.panel-body').slideDown();
+				$this.removeClass('panel-collapsed');
+				$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+			}
+		});
+
+		$(document).ready(function(){
+			$(this).scrollTop(0);
+		});
+	</script>
+    <script type="text/javascript" src="./js/map_handler.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5TmyCnAkvxGBx5jmQR2h8dt6UV-ztP3o&callback=initMap"></script>
+    <script type="text/javascript" src="./js/contacts_handler.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+	<script type="text/javascript" src="./js/button_handler.js"></script>
+</div>
+  </body>
+</html>
