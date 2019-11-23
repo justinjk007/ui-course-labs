@@ -1,0 +1,122 @@
+% Created 2019-11-22 Fri 20:48
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc} % For times new roman font
+\usepackage{mathptmx} % For times new roman font
+\linespread{1.2} % Change line spacing
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{helvet}
+\usepackage{listings}
+\usepackage{inconsolata}
+\usepackage{xcolor-solarized}
+\definecolor{foreground}{RGB}{184, 83, 83} % For verbatim
+\definecolor{background}{RGB}{255, 231, 231} % For verbatim
+\let\OldTexttt\texttt
+\renewcommand{\texttt}[1]{\OldTexttt{\footnotesize\colorbox{background}{\textcolor{foreground}{#1}}}}
+\newenvironment{helvetica}{\fontfamily{phv}\selectfont}{\par}
+\usepackage{hyperref} % Make the hyper-links prettier
+\hypersetup{
+colorlinks=true,
+linkcolor=blue!70!white,
+urlcolor=blue!95!black
+}
+\usepackage{enumitem}
+\setlist[1]{itemsep=5pt}
+\lstdefinelanguage{cpp}{
+language=C++,
+morekeywords={cerr,exit,string},
+deletekeywords={...},
+escapeinside={\%*}{*)},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+stepnumber=1,
+tabsize=4,
+breakatwhitespace=false,
+breaklines=true,
+backgroundcolor=\color{solarized-base3},
+basicstyle=\scriptsize\ttfamily\color{solarized-base0},
+commentstyle=\itshape\color{solarized-base01},
+keywordstyle=\color{solarized-green},
+identifierstyle=\color{solarized-blue},
+stringstyle=\color{solarized-cyan},
+moredelim = *[l][\color{solarized-orange}]{\#},
+moredelim = **[s][\color{solarized-cyan}]{<}{>},
+rulecolor=\color{black},
+literate={{\%d}}{{\textcolor{solarized-red}{\%d}}}2
+{{\%2d}}{{\textcolor{solarized-red}{\%2d}}}3
+{{\\n}}{{\textcolor{solarized-red}{\textbackslash{}n}}}2,
+}
+\author{Justin Kaipada - 100590167}
+\date{\today}
+\title{LAB 9 - REPORT}
+\hypersetup{
+ pdfauthor={Justin Kaipada - 100590167},
+ pdftitle={LAB 9 - REPORT},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.2.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\newpage % Go to the next page after title page
+
+\section*{Ontario Tech U software portal login page}
+\label{sec:org44d8a07}
+
+For my AB testing users had to successfully click the link which would allow them to login to the
+Ontario Tech website. Initially without any change there was a sign in link and also a picture which
+demoed the sign in window which had red button in it so people where most likely to click that
+first. Also this particular page was like an instruction manual so people had to read the page
+clearly so they start from the beginning so 5 seconds wasn't enough.
+
+\textbf{Results:}
+\lstset{language=cpp,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+A,false,5000,2:57:31
+B,false,5000,3:03:44
+A,false,2964,3:04:35
+B,false,5000,3:05:11
+B,false,5000,3:05:30
+A,false,3597,3:05:42
+B,true,1214,3:06:00
+A,true,2731,3:06:47
+B,true,2967,3:06:51
+B,true,3498,3:06:55
+A,false,2364,3:06:58
+A,false,1747,3:07:01
+A,false,2847,3:07:12
+A,false,2198,3:07:15
+A,false,5000,3:07:27
+A,false,2930,3:07:40
+B,false,5000,3:07:54
+\end{lstlisting}
+
+A was the unedited page. B is the edited page in which I removed first 2 demo images which was were
+users were most likely to click first, removing them made the page simpler. I could have made the
+link \textbf{bold} or ALL CAPS to make even more attractive.
+
+\section*{Files attached}
+\label{sec:org46cbd92}
+
+\begin{enumerate}
+\item A.png - original page
+\item B.png - edited page
+\item results.csv
+\end{enumerate}
+\end{document}

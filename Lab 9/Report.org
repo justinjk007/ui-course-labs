@@ -1,0 +1,96 @@
+#+OPTIONS: toc:nil num:nil
+#+TITLE: LAB 9 - REPORT
+#+AUTHOR: Justin Kaipada - 100590167
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,12pt]
+#+LATEX_HEADER: \usepackage[T1]{fontenc} % For times new roman font
+#+LATEX_HEADER: \usepackage{mathptmx} % For times new roman font
+#+LATEX_HEADER: \linespread{1.2} % Change line spacing
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{soul}
+#+LATEX_HEADER: \usepackage{helvet}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{inconsolata}
+#+LATEX_HEADER: \usepackage{xcolor-solarized}
+#+LATEX_HEADER: \definecolor{foreground}{RGB}{184, 83, 83} % For verbatim
+#+LATEX_HEADER: \definecolor{background}{RGB}{255, 231, 231} % For verbatim
+#+LATEX_HEADER: \let\OldTexttt\texttt
+#+LATEX_HEADER: \renewcommand{\texttt}[1]{\OldTexttt{\footnotesize\colorbox{background}{\textcolor{foreground}{#1}}}}
+#+LATEX_HEADER: \newenvironment{helvetica}{\fontfamily{phv}\selectfont}{\par}
+#+LATEX_HEADER: \usepackage{hyperref} % Make the hyper-links prettier
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER: colorlinks=true,
+#+LATEX_HEADER: linkcolor=blue!70!white,
+#+LATEX_HEADER: urlcolor=blue!95!black
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist[1]{itemsep=5pt}
+#+LATEX_HEADER: \lstdefinelanguage{cpp}{
+#+LATEX_HEADER: language=C++,
+#+LATEX_HEADER: morekeywords={cerr,exit,string},
+#+LATEX_HEADER: deletekeywords={...},
+#+LATEX_HEADER: escapeinside={\%*}{*)},
+#+LATEX_HEADER: showspaces=false,
+#+LATEX_HEADER: showstringspaces=false,
+#+LATEX_HEADER: showtabs=false,
+#+LATEX_HEADER: stepnumber=1,
+#+LATEX_HEADER: tabsize=4,
+#+LATEX_HEADER: breakatwhitespace=false,
+#+LATEX_HEADER: breaklines=true,
+#+LATEX_HEADER: backgroundcolor=\color{solarized-base3},
+#+LATEX_HEADER: basicstyle=\scriptsize\ttfamily\color{solarized-base0},
+#+LATEX_HEADER: commentstyle=\itshape\color{solarized-base01},
+#+LATEX_HEADER: keywordstyle=\color{solarized-green},
+#+LATEX_HEADER: identifierstyle=\color{solarized-blue},
+#+LATEX_HEADER: stringstyle=\color{solarized-cyan},
+#+LATEX_HEADER: moredelim = *[l][\color{solarized-orange}]{\#},
+#+LATEX_HEADER: moredelim = **[s][\color{solarized-cyan}]{<}{>},
+#+LATEX_HEADER: rulecolor=\color{black},
+#+LATEX_HEADER: literate={{\%d}}{{\textcolor{solarized-red}{\%d}}}2
+#+LATEX_HEADER:           {{\%2d}}{{\textcolor{solarized-red}{\%2d}}}3
+#+LATEX_HEADER:           {{\\n}}{{\textcolor{solarized-red}{\textbackslash{}n}}}2,
+#+LATEX_HEADER: }
+
+#+begin_export latex
+\newpage % Go to the next page after title page
+#+end_export
+
+* Ontario Tech U software portal login page
+ 
+For my AB testing users had to successfully click the link which would allow them to login to the
+Ontario Tech website. Initially without any change there was a sign in link and also a picture which
+demoed the sign in window which had red button in it so people where most likely to click that
+first. Also this particular page was like an instruction manual so people had to read the page
+clearly so they start from the beginning so 5 seconds wasn't enough.
+
+*Results:*
+#+begin_src cpp
+A,false,5000,2:57:31
+B,false,5000,3:03:44
+A,false,2964,3:04:35
+B,false,5000,3:05:11
+B,false,5000,3:05:30
+A,false,3597,3:05:42
+B,true,1214,3:06:00
+A,true,2731,3:06:47
+B,true,2967,3:06:51
+B,true,3498,3:06:55
+A,false,2364,3:06:58
+A,false,1747,3:07:01
+A,false,2847,3:07:12
+A,false,2198,3:07:15
+A,false,5000,3:07:27
+A,false,2930,3:07:40
+B,false,5000,3:07:54
+#+end_src
+
+A was the unedited page. B is the edited page in which I removed first 2 demo images which was were
+users were most likely to click first, removing them made the page simpler. I could have made the
+link *bold* or ALL CAPS to make even more attractive.
+
+* Files attached
+
+1. A.png - original page
+2. B.png - edited page
+3. results.csv
+

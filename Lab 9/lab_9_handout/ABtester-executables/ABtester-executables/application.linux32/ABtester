@@ -1,0 +1,4 @@
+#!/bin/sh
+
+APPDIR=$(dirname "$0")
+java -Djna.nosys=true -Djava.library.path="$APPDIR:$APPDIR/lib" -cp "$APPDIR:$APPDIR/lib/kryo-3.0.3.jar:$APPDIR/lib/minlog-1.2.jar:$APPDIR/lib/objenesis-2.2.jar:$APPDIR/lib/ABtester.jar:$APPDIR/lib/core.jar:$APPDIR/lib/jogl-all.jar:$APPDIR/lib/gluegen-rt.jar:$APPDIR/lib/jogl-all-natives-linux-i586.jar:$APPDIR/lib/gluegen-rt-natives-linux-i586.jar" ABtester "$@"
